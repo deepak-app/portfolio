@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #14120F; /* Ink Black */
+    color: #E8DCC4; /* Aged Vellum */
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+  }
+
+  /* Custom scrollbar for an aged manuscript feel */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #14120F;
+    border-left: 1px solid #6B655A; /* Faded Ash */
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3A6B65; /* Scribe Teal */
+    border: 2px solid #14120F;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C9A227; /* Manuscript Gold */
+  }
+}
+
+@layer utilities {
+  /* Deckled Edge clip-path simulation */
+  .clip-deckled {
+    clip-path: polygon(
+      0% 3px, 4% 0px, 8% 4px, 12% 1px, 16% 3px, 20% 0px, 24% 4px, 28% 1px, 32% 3px, 36% 0px, 40% 4px, 44% 1px, 48% 3px, 52% 0px, 56% 4px, 60% 1px, 64% 3px, 68% 0px, 72% 4px, 76% 1px, 80% 3px, 84% 0px, 88% 4px, 92% 1px, 96% 3px, 100% 0px,
+      calc(100% - 1px) 8%, 100% 16%, calc(100% - 3px) 24%, 100% 32%, calc(100% - 1px) 40%, 100% 48%, calc(100% - 3px) 56%, 100% 64%, calc(100% - 1px) 72%, 100% 80%, calc(100% - 3px) 88%, 100% 96%, calc(100% - 1px) 100%,
+      96% calc(100% - 3px), 92% 100%, 88% calc(100% - 4px), 84% calc(100% - 1px), 80% calc(100% - 3px), 76% 100%, 72% calc(100% - 4px), 68% calc(100% - 1px), 64% calc(100% - 3px), 60% 100%, 56% calc(100% - 4px), 52% calc(100% - 1px), 48% calc(100% - 3px), 44% 100%, 40% calc(100% - 4px), 36% calc(100% - 1px), 32% calc(100% - 3px), 28% 100%, 24% calc(100% - 4px), 20% calc(100% - 1px), 16% calc(100% - 3px), 12% 100%, 8% calc(100% - 4px), 4% calc(100% - 1px), 0% 100%,
+      0px 96%, 3px 88%, 1px 80%, 2px 72%, 0px 64%, 3px 56%, 1px 48%, 2px 40%, 0px 32%, 3px 24%, 1px 16%, 2px 8%
+    );
+  }
+
+  /* Ribbon tail shape */
+  .clip-ribbon-tail {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 85%, 0% 100%);
+  }
+
+  /* Ink In loading animation */
+  .animate-ink-in {
+    animation: ink-in 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  /* Ink In sub-animations for delays */
+  .animate-ink-in-delayed {
+    animation: ink-in 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
+}
+
+@keyframes ink-in {
+  0% {
+    opacity: 0;
+    filter: blur(12px) contrast(200%);
+    letter-spacing: 0.15em;
+    transform: translateY(4px);
+  }
+  40% {
+    opacity: 0.3;
+    filter: blur(6px) contrast(150%);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px) contrast(100%);
+    letter-spacing: normal;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll Fade In Animation Classes */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom selection styling */
+::selection {
+  background-color: #3A6B65; /* Scribe Teal */
+  color: #E8DCC4; /* Aged Vellum */
+}
