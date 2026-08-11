@@ -1,32 +1,55 @@
-# React + TypeScript + Vite
+# The Scriptorium — Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A digital scriptorium — the portfolio of a developer who takes unstructured, messy data and turns it into clean, structured, verified output. Built using **React**, **TypeScript**, and **Tailwind CSS**.
 
-Currently, two official plugins are available:
+The visual language borrows from illuminated manuscripts — ink, vellum, marginalia, rubric-red annotations, and wax-seal status marks — executed with modern web precision.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Design Details
 
-## React Compiler
+- **Color Palette**:
+  - Ink Black (`#14120F`) - Primary background
+  - Aged Vellum (`#E8DCC4`) - Primary text
+  - Manuscript Gold (`#C9A227`) - Primary accent
+  - Scribe Teal (`#3A6B65`) - Secondary accent
+  - Rubric Red (`#8B3A3A`) - Status seals, marginalia
+  - Faded Ash (`#6B655A`) - Muted elements & borders
+- **Typography**:
+  - Display face: `Fraunces` (variable optical sizing, warm serif style)
+  - Body face: `Inter` (contemporary sans-serif)
+  - Utility/mono: `IBM Plex Mono` (monospace codes, status seals, labels)
+- **Signature Features**:
+  - **Marginalia**: Key sections contain handwritten-style notes in the margin (desktop) collapsing to inline callouts (mobile).
+  - **Deckled Edge Project Cards**: Folios styled with a torn-paper edge using responsive CSS clip-path masks.
+  - **Wax Seal Badges**: Status badges (`LIVE`, `IN PROGRESS`, `ARCHIVED`) created using pure CSS bevels, gradients, and rotated labels.
+  - **Ribbon Bookmark**: Scroll progress tracking bookmark hanging on the right side of the screen.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Interactive Elements
 
-## Expanding the Oxlint configuration
+- **Editable Project Cards**: In the development environment, click on `✏️ [edit_folio]` on any card to update its title, description, tags, status, or links inline.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Tech Stack & Tooling
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+- **Core**: React 19 + TypeScript
+- **Styling**: Tailwind CSS v3 + PostCSS
+- **Build Tool**: Vite 8
+- **Linter**: Oxlint (0 warnings, 0 errors)
+
+## Getting Started
+
+### Installation
+
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Run Locally (Dev Server)
+
+```bash
+npm run dev
+```
+
+### Production Build
+
+```bash
+npm run build
+```
