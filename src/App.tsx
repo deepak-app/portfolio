@@ -183,9 +183,7 @@ export const App: React.FC = () => {
             <p>
               I'm largely self-taught and learn best visually — I'd rather sketch a system out than read about it. That same instinct shows up outside of work too: I draw, write, and I'm drawn to history and mythology, partly because they're humanity's oldest attempts at turning fragmentary, unstructured accounts into something coherent. Not a bad hobby for someone who does that for a living.
             </p>
-            <p className="text-xs text-faded-ash italic mt-4">
-              (Note: An earlier, Pokémon-themed version of this portfolio explored dark-mode glassmorphism and trainer-card visual concepts, showcasing a different range of frontend styling.)
-            </p>
+
           </div>
         </section>
 
