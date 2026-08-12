@@ -23,9 +23,23 @@ The visual language borrows from illuminated manuscripts — ink, vellum, margin
   - **Wax Seal Badges**: Status badges (`LIVE`, `IN PROGRESS`, `ARCHIVED`) created using pure CSS bevels, gradients, and rotated labels.
   - **Ribbon Bookmark**: Scroll progress tracking bookmark hanging on the right side of the screen.
 
-## Interactive Elements
+## Adding & Editing Projects
 
-- **Editable Project Cards**: In the development environment, click on `✏️ [edit_folio]` on any card to update its title, description, tags, status, or links inline.
+All project data is stored externally in `src/data/projects.json`. To add or modify projects:
+1. Open `src/data/projects.json`.
+2. Edit or add elements to the JSON array conforming to this structure:
+   ```json
+   {
+     "id": "project-id",
+     "title": "Project Title",
+     "status": "LIVE",
+     "description": "Short explanation of the project details.",
+     "techStack": ["React", "TypeScript", "Node.js"],
+     "githubUrl": "https://github.com/...",
+     "demoUrl": "https://..."
+   }
+   ```
+Changes are instantly reflected in development with HMR, and will be included in the next production build without needing to touch any React code.
 
 ## Tech Stack & Tooling
 

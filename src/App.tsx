@@ -1,63 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ScrollRibbon from './components/ScrollRibbon';
 import ProjectCard from './components/ProjectCard';
 import type { ProjectData } from './components/ProjectCard';
 import Marginalia from './components/Marginalia';
 import WaxSeal from './components/WaxSeal';
+import projectsData from './data/projects.json';
 import './App.css';
 
 export const App: React.FC = () => {
-  // Setup the default project details from the prompt brief
-  const [projects, setProjects] = useState<ProjectData[]>([
-    {
-      id: 'doc-rendering',
-      title: 'Enhanced Document Rendering Platform',
-      status: 'IN PROGRESS',
-      description: 'Extension of the document-conversion work into a full rendering platform for complex document structures.',
-      techStack: ['Node.js', 'TypeScript', 'Docker', 'HTML/XML', 'ETL'],
-      githubUrl: 'https://github.com',
-    },
-    {
-      id: 'travel-connect',
-      title: 'TravelConnect',
-      status: 'IN PROGRESS',
-      description: 'A microservices-based travel itinerary coordinator that consolidates booking details, parses real-time flight notifications, and automates calendar updates.',
-      techStack: ['React', 'Tailwind CSS', 'Node.js', 'SQL'],
-      githubUrl: 'https://github.com',
-      demoUrl: 'https://demo.com',
-    },
-    {
-      id: 'analyzer BYOK',
-      title: 'Data Story Analyzer',
-      status: 'IN PROGRESS',
-      description: 'Data Story Analyzer (BYOK) is a secure, privacy-focused web application for client-side data profiling, interactive visualization, and AI-driven insights. Built on a Bring Your Own Key (BYOK) model, it allows users to upload local datasets (CSV/Excel) and query multi-provider LLMs (Gemini, OpenAI, Anthropic) directly from their browser. To ensure strict privacy and eliminate AI hallucinations ("No-Invented-Numbers"), raw data rows never leave the client; the app computes deterministic descriptive statistics and correlation matrices locally, passing only aggregated JSON metadata to the LLM to drive dynamic charts and intelligent data assistant interactions.',
-      techStack: ["HTML5", "CSS3", "Vanilla JavaScript (ES6+)", "SheetJS", "PapaParse", "Chart.js", "Multi-Provider LLM APIs", "BYOK Architecture", "Client-Side Web Storage"],
-      githubUrl: 'https://github.com',
-    },
-    {
-      id: 'esp32-hobby',
-      title: 'ESP32 Hobby Projects',
-      status: 'IN PROGRESS',
-      description: 'Hardware tinkering and embedded experiments using an ESP32 dev board.',
-      techStack: ['C++', 'ESP32', 'IoT', 'Embedded Systems'],
-      githubUrl: 'https://github.com',
-    },
-    {
-      id: 'local-llm',
-      title: 'Local LLM Tooling Exploration',
-      status: 'IN PROGRESS',
-      description: 'Research into running local LLMs via Ollama and LM Studio, including GPU sizing for local inference.',
-      techStack: ['Python', 'Ollama', 'LM Studio', 'Local LLMs', 'PyTorch'],
-      githubUrl: 'https://github.com',
-    },
-  ]);
-
-  // Handle local projects update
-  const handleUpdateProject = (updatedProject: ProjectData) => {
-    setProjects((prev) =>
-      prev.map((proj) => (proj.id === updatedProject.id ? updatedProject : proj))
-    );
-  };
+  const projects = projectsData as ProjectData[];
 
   // Scroll Fade-in Intersection Observer
   useEffect(() => {
@@ -329,7 +280,7 @@ export const App: React.FC = () => {
           </div>
 
           <p className="text-xs font-mono text-faded-ash mb-8 max-w-xl">
-            * Note: These folio cards are in-situ and editable. Use the <span className="text-scribe-teal">[edit_folio]</span> control to annotate or correct any details in-browser.
+            * Note: These project cards represent curated professional deliverables and experimental works.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -337,7 +288,6 @@ export const App: React.FC = () => {
               <ProjectCard
                 key={project.id}
                 project={project}
-                onUpdate={handleUpdateProject}
               />
             ))}
           </div>
