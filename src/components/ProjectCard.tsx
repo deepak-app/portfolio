@@ -204,13 +204,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onUpdate }) =
                   )}
                 </div>
 
-                <button
-                  onClick={() => setIsEditing(true)}
-                  className="text-[10px] font-mono text-faded-ash hover:text-scribe-teal transition-colors flex items-center gap-1 focus:outline-none focus:ring-1 focus:ring-scribe-teal"
-                  title="Edit project details"
-                >
-                  <span>✏️ [edit_folio]</span>
-                </button>
+                {typeof window !== 'undefined' && (window.location.search.includes('edit=true') || import.meta.env.DEV) && (
+                  <button
+                    onClick={() => setIsEditing(true)}
+                    className="text-[10px] font-mono text-faded-ash hover:text-scribe-teal transition-colors flex items-center gap-1 focus:outline-none focus:ring-1 focus:ring-scribe-teal"
+                    title="Edit project details"
+                  >
+                    <span>✏️ [edit_folio]</span>
+                  </button>
+                )}
               </div>
             </div>
           </>

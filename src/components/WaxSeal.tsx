@@ -4,10 +4,11 @@ export type ProjectStatus = 'LIVE' | 'IN PROGRESS' | 'ARCHIVED';
 
 interface WaxSealProps {
   status: ProjectStatus;
+  size?: 'sm' | 'md';
   className?: string;
 }
 
-export const WaxSeal: React.FC<WaxSealProps> = ({ status, className = '' }) => {
+export const WaxSeal: React.FC<WaxSealProps> = ({ status, size = 'md', className = '' }) => {
   // Determine text sizes or styling variations if any
   const text = status === 'IN PROGRESS' ? 'PROGRESS' : status;
 
@@ -35,20 +36,24 @@ export const WaxSeal: React.FC<WaxSealProps> = ({ status, className = '' }) => {
     }
   };
 
+  const sizeClasses = size === 'sm' ? 'w-9 h-9' : 'w-14 h-14';
+
   return (
     <div 
-      className={`relative inline-flex items-center justify-center w-14 h-14 select-none transition-transform duration-500 ease-out group-hover:rotate-12 cursor-default ${getShapeClass()} ${className}`}
+      className={`relative inline-flex items-center justify-center ${sizeClasses} select-none transition-transform duration-500 ease-out group-hover:rotate-12 cursor-default ${getShapeClass()} ${className}`}
       style={{
         background: 'radial-gradient(circle at 35% 35%, #a24646 0%, #8b3a3a 50%, #5d2525 100%)',
-        boxShadow: 'inset 2px 2px 4px rgba(255,255,255,0.3), inset -2px -2px 6px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.4)',
+        boxShadow: size === 'sm' 
+          ? 'inset 1px 1px 2px rgba(255,255,255,0.3), inset -1px -1px 3px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.4)' 
+          : 'inset 2px 2px 4px rgba(255,255,255,0.3), inset -2px -2px 6px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.4)',
       }}
       title={`Project Status: ${status}`}
     >
       {/* Outer irregular border rim */}
       <div 
-        className={`absolute inset-1 border border-red-950/40 opacity-70 ${getShapeClass()}`}
+        className={`absolute ${size === 'sm' ? 'inset-[3px]' : 'inset-1'} border border-red-950/40 opacity-70 ${getShapeClass()}`}
         style={{
-          boxShadow: 'inset 0 0 4px rgba(0,0,0,0.4)',
+          boxShadow: size === 'sm' ? 'inset 0 0 2px rgba(0,0,0,0.4)' : 'inset 0 0 4px rgba(0,0,0,0.4)',
         }}
       />
 
@@ -56,18 +61,20 @@ export const WaxSeal: React.FC<WaxSealProps> = ({ status, className = '' }) => {
       <div className="z-10 flex flex-col items-center justify-center text-center">
         {/* Large central character imprint */}
         <span 
-          className="text-2xl font-bold font-fraunces text-red-950/70 select-none leading-none -mb-0.5"
+          className={`${size === 'sm' ? 'text-sm' : 'text-2xl'} font-bold font-fraunces text-red-950/70 select-none leading-none -mb-0.5`}
           style={{ textShadow: '1px 1px 1px rgba(255,255,255,0.1)' }}
         >
           {getOverlayText()}
         </span>
         {/* Small rotated banner text */}
-        <span 
-          className="text-[7px] font-bold font-mono tracking-wider text-red-100/90 leading-none select-none uppercase -rotate-6"
-          style={{ textShadow: '0 -1px 0 rgba(0,0,0,0.5)' }}
-        >
-          {text}
-        </span>
+        {size !== 'sm' && (
+          <span 
+            className="text-[7px] font-bold font-mono tracking-wider text-red-100/90 leading-none select-none uppercase -rotate-6"
+            style={{ textShadow: '0 -1px 0 rgba(0,0,0,0.5)' }}
+          >
+            {text}
+          </span>
+        )}
       </div>
     </div>
   );
